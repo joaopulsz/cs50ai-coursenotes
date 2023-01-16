@@ -50,7 +50,13 @@ Then, repeat the following loop until the most optimal solution has been reached
 
 Can be different data structures depending on the problem at hand:
 
-**Stack (last in, first out)** - <u>depth first search</u>, I.e., search algorithm that always expands the deepest node in the frontier
+**Stack (last in, first out)** - <u>depth-first search</u>, I.e., search algorithm that always expands the deepest node in the frontier
 
-**Queue (first in, first out)** - <u>breadth first search</u>, I.e., search algorithm that always expands the shallowest node in the frontier
+**Queue (first in, first out)** - <u>breadth-first search</u>, I.e., search algorithm that always expands the shallowest node in the frontier
 
+
+## Informed Search
+
+Search strategies that use knowledge specific to the problem to find solutions more efficiently
+
+### Greedy best-first search
