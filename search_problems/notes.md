@@ -50,9 +50,9 @@ Then, repeat the following loop until the most optimal solution has been reached
 
 Can be different data structures depending on the problem at hand:
 
-**Stack (last in, first out)** - <u>depth-first search</u>, I.e., search algorithm that always expands the deepest node in the frontier
+**Stack (last in, first out)** - <u>depth-first search</u>, i.e., search algorithm that always expands the deepest node in the frontier
 
-**Queue (first in, first out)** - <u>breadth-first search</u>, I.e., search algorithm that always expands the shallowest node in the frontier
+**Queue (first in, first out)** - <u>breadth-first search</u>, i.e., search algorithm that always expands the shallowest node in the frontier
 
 
 ## Informed Search
@@ -60,3 +60,13 @@ Can be different data structures depending on the problem at hand:
 Search strategies that use knowledge specific to the problem to find solutions more efficiently
 
 ### Greedy best-first search
+
+A search algorithm that, instead of expanding the deepest node (like DFS) or the shallowest node (like BFS), always expands the node that it thinks is closest to the goal, as estimated by a heuristic function *(h)n*, which estimates how close to the goal the next node is
+
+### A* search
+
+A search algorithm that expands the node with the lowest value of *g(n) + h(n)*, where g(n) is the cost to reach the current node
+
+Optimal search if it satisfies 2 conditions:
+- the heuristic h(n) must be admissable, i.e., it never underestimates the true cost (it always gets it right or underestimates) and
+- it must also be consistent, i.e., the heuristic value from the current state to the goal should not be more that the heuristic value of my successor plus however much it would cost me to make that step (from current to successor)
