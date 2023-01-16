@@ -35,15 +35,15 @@ Start with a **frontier** (representation of all the the possibilities that can 
 Also start with an empty explored set
 
 Then, repeat the following loop until the most optimal solution has been reached:
-	- if the frontier is empty, then no solution
+- if the frontier is empty, then no solution
 	
-	- remove a node from the frontier
+- remove a node from the frontier
 
-	- if node contains goal state, return the solution
+- if node contains goal state, return the solution
 
-	- add the node to the explored set
+- add the node to the explored set
 
-	- expand node (consider all possible actions that can be taken from the state this node is representing), add resulting nodes to the frontier if they aren't already there or in the explored set
+- expand node (consider all possible actions that can be taken from the state this node is representing), add resulting nodes to the frontier if they aren't already there or in the explored set
 
 
 ### Frontiers
