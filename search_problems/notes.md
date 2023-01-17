@@ -70,3 +70,37 @@ A search algorithm that expands the node with the lowest value of *g(n) + h(n)*,
 Optimal search if it satisfies 2 conditions:
 - the heuristic h(n) must be admissable, i.e., it never underestimates the true cost (it always gets it right or underestimates) and
 - it must also be consistent, i.e., the heuristic value from the current state to the goal should not be more that the heuristic value of my successor plus however much it would cost me to make that step (from current to successor)
+
+
+## Adversarial Search
+
+### Minimax algorithm
+
+Represents winning conditions as (1) for one side, (-1) for the other, and (0) for a tie. Actions taken by this algorithm are driven by these conditions, with the maximizer side trying to get the highest score and the minimizer side trying to get the lowest score
+
+**Tic-tac-toe AI:** 
+- S*0*: initial state
+- player(*s*): returns which player to move in state *s*
+- action(*s*): returns legal moves in state *s*
+- result(*s,a*): returns state after action *a* taken in state *s*
+- terminal(*s*): checks if state *s* is a terminal state
+- utility(*s*): final numerical value for terminal state *s*
+
+**Minimax in pseudocode:**
+given a state *s*: 
+- The maximizing player picks action *a* in Actions(*s*) that produces the highest value of Min-Value(Result(*s, a*))
+- The minimizing player picks action *a* in Actions(*s*) that produces the lowest value of Max-Value(Result(*s, a*))
+function Max-value(*s*):
+- if terminal(*s*): return utility(*s*)
+- v = -∞
+- for *a* in Actions(*s*): v = Max-value(v, Min-value(Result(*s, a*)))
+- return v 
+function Min-value(*s*):
+- if terminal(*s*): return utility(*s*)
+- v = ∞
+- for *a* in Actions(*s*): v = Min-value(v - Max-value(Result(*s, a*)))
+- return v 
+
+**Optimizing the minimax algotithm:**
+- alpha-beta pruning: skips some of the recursive computations that are decidedly unfavorable
+- depth-limited minimax: considers only a pre-defined number of moves before it stops, without ever getting to a terminal state. It relies on an *evaluation function* that estimates the expected utility of the game from a given state, or, in other words, assigns values to states
