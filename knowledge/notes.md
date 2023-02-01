@@ -26,3 +26,19 @@ The **Knowledge Base (KB)** contains knowledge that the AI is provided about the
 
 
 ## Inference
+
+The process of deriving new sentences from old ones
+
+A way of infering knowledge based on previous knowledge is with a **model checking** algorithm:
+To determine if KB ⊨ α (in other words, answering the question: “can we conclude that α is true based on our knowledge base”)
+- Enumerate all possible models.
+- If in every model where KB is true, α is true as well, then KB entails α (KB ⊨ α)
+
+To run the Model Checking algorithm, the following information is needed:
+- Knowledge Base, which will be used to draw inferences
+- A query, or the proposition that we are interested in whether it is entailed by the KB
+- Symbols, a list of all the symbols (or atomic propositions) used 
+- Model, an assignment of truth and false values to symbols
+
+
+## Knowledge engineering
