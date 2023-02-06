@@ -71,3 +71,45 @@ Inference can be viewed as a search problem with the following properties:
 - Transition model: new knowledge base after inference
 - Goal test: checking whether the statement that we are trying to prove is in the KB
 - Path cost function: the number of steps in the proof
+
+
+## Resolution
+
+A powerful inference rule that states that if one of two atomic propositions in an Or proposition is false, the other has to be true. 
+
+It relies on **Complementary Literals**, two of the same atomic propositions where one is negated and the other is not, such as P and ¬P. Complementary literals allow us to generate new sentences through inferences by resolution. Thus, inference algorithms locate complementary literals to generate new knowledge.
+
+A **Clause** is a disjunction of literals (a propositional symbol or a negation of a propositional symbol, such as P, ¬P). A **disjunction** consists of propositions that are connected with an Or logical connective (P ∨ Q ∨ R). A **conjunction**, on the other hand, consists of propositions that are connected with an And logical connective (P ∧ Q ∧ R). Clauses allow us to convert any logical statement into a **Conjunctive Normal Form (CNF)**, which is a conjunction of clauses, for example: (A ∨ B ∨ C) ∧ (D ∨ ¬E) ∧ (F ∨ G).
+
+Steps in Conversion of Propositions to Conjunctive Normal Form:
+- Eliminate biconditionals: turn (α ↔ β) into (α → β) ∧ (β → α).
+- Eliminate implications: turn (α → β) into ¬α ∨ β.
+- Move negation inwards until only literals are being negated (and not clauses), using De Morgan’s Laws: turn ¬(α ∧ β) into ¬α ∨ ¬β
+
+Here’s an example of converting (P ∨ Q) → R to Conjunctive Normal Form:
+- (P ∨ Q) → R
+- ¬(P ∨ Q) ∨ R /Eliminate implication
+- (¬P ∧ ¬Q) ∨ R /De Morgan’s Law
+- (¬P ∨ R) ∧ (¬Q ∨ R) /Distributive Law
+
+Resolving a literal and its negation, i.e. ¬P and P, gives the empty clause (). The empty clause is always false, and this makes sense because it is impossible that both P and ¬P are true. This fact is used by the resolution algorithm.
+
+To determine if KB ⊨ α:
+- Check: is (KB ∧ ¬α) a contradiction?
+- If so, then KB ⊨ α.
+- Otherwise, no entailment.
+
+Proof by contradiction is a tool used often in computer science. If our knowledge base is true, and it contradicts ¬α, it means that ¬α is false, and, therefore, α must be true. More technically, the algorithm would perform the following actions:
+
+To determine if KB ⊨ α:
+- Convert (KB ∧ ¬α) to Conjunctive Normal Form.
+- Keep checking to see if we can use resolution to produce a new clause.
+- If we ever produce the empty clause (equivalent to False), congratulations! We have arrived at a contradiction, thus proving that KB ⊨ α.
+- However, if contradiction is not achieved and no more clauses can be inferred, there is no entailment.
+
+Here is an example that illustrates how this algorithm might work:
+- Does (A ∨ B) ∧ (¬B ∨ C) ∧ (¬C) entail A?
+- First, to prove by contradiction, we assume that A is false. Thus, we arrive at (A ∨ B) ∧ (¬B ∨ C) ∧ (¬C) ∧ (¬A).
+- Now, we can start generating new information. Since we know that C is false (¬C), the only way (¬B ∨ C) can be true is if B is false, too. Thus, we can add (¬B) to our KB.
+- Next, since we know (¬B), the only way (A ∨ B) can be true is if A is true. Thus, we can add (A) to our KB.
+- Now our KB has two complementary literals, (A) and (¬A). We resolve them, arriving at the empty set, (). The empty set is false by definition, so we have arrived at a contradiction.
