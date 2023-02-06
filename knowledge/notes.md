@@ -41,4 +41,33 @@ To run the Model Checking algorithm, the following information is needed:
 - Model, an assignment of truth and false values to symbols
 
 
-## Knowledge engineering
+**Knowledge engineering**: The process of figuring out how to represent propositions and logic in AI
+
+
+## Inference rules
+
+Allow us to generate new information based on existing knowledge without considering every possible model.
+
+- **Modus ponens**: if we know an implication and its antecedent to be true, then the consequent is true as well.
+
+- **And elimination**: if an And proposition is true, then any one atomic proposition within it is true as well.
+
+- **Double negation elimination**: a proposition that is negated twice is true
+
+- **Implication elimination**: an implication is equivalent to an Or relation between the negated antecedent and the consequent
+
+- **Biconditional elimination**: a biconditional proposition is equivalent to an implication and its inverse with an And connective.
+
+- **De Morgan's law**: it is possible to turn an And connective into an Or connective.
+
+- **Distributive property**: a proposition with two elements that are grouped with And or Or connectives can be distributed, or broken down into, smaller units consisting of And and Or.
+
+
+### Knowledge and search problems:
+Inference can be viewed as a search problem with the following properties:
+
+- Initial state: starting knowledge base
+- Actions: inference rules
+- Transition model: new knowledge base after inference
+- Goal test: checking whether the statement that we are trying to prove is in the KB
+- Path cost function: the number of steps in the proof
